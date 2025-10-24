@@ -1,6 +1,6 @@
 class Solution {
     public int nextBeautifulNumber(int n) {
-    // //Version: 1
+    //Version: 1
         while(true){
             if(isBalanced(++n)) return n;
         }
