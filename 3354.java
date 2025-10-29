@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Solution {
     public int countValidSelections(int[] nums) {
     //     //version: 1
@@ -32,7 +34,6 @@ class Solution {
 
         //version: 2
         int count = 0;
-        outer:
         for(int i = 0; i<nums.length; i++){
             if(nums[i] == 0){
                 int [] ref = nums.clone();
@@ -40,11 +41,10 @@ class Solution {
                 for(int l = i, r = i; ((l>0)||(r<len));){
                     if(l>0) ref[l-1] += ref[l--];
                     if(r<len) ref[r+1] += ref[r++];
-                    System.out.println(Arrays.toString(ref));
+                    // System.out.println(Arrays.toString(ref));
                 }
-                // for(int s : ref) if(s>0) continue outer;
-                if(ref[0] == ref[len])
-                count++;
+                if(ref[0] == ref[len]) count += 2;
+                else if(Math.abs(ref[0] - ref[len]) == 1) count++;
             }
         }
         return count;
